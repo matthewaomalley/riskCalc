@@ -1,0 +1,23 @@
+{
+  "name": "riskcalc",
+  "version": "1.0.0",
+  "description": "risk calculation saas",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewaomalley/riskCalc.git"
+  },
+  "author": "matt, matthew, rayo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matthewaomalley/riskCalc/issues"
+  },
+  "homepage": "https://github.com/matthewaomalley/riskCalc#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "node": "^17.4.0"
+  }
+}
