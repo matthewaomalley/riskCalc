@@ -7,9 +7,21 @@ h2 {
     text-align: center;
 }
 
-body {
+.intro {
+    width: 65%; 
+    margin: auto;
+}
+
+/* Container for main part of the site */
+.div-body {
     margin: 15px;
-    padding: 5px;
+    padding: 20px;
+    height: auto;
+    width: 60%;
+    margin: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
+    text-align: center;
+    font-family: georgia;
 }
+
