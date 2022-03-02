@@ -5,6 +5,7 @@
     <head>
         <meta charset = 'UTF-8'>
         <title>Insurance Risk Calculator</title>
+        <script src = "bmicalc.js"></script>
         <link rel = "stylesheet" href = "index.css">
     </head>
 
@@ -22,42 +23,40 @@
             <div class ="dropdown">
                 <button class="dropbtn">Age</button>
                 <div class="dropdown-content">
-                    <option>0-29</option>
-                    <option>30-44</option>
-                    <option>45-59</option>
-                    <option>60+</option>
+                    <option value = "under30">0-29 yrs.</option>
+                    <option value = "under45">30-44 yrs.</option>
+                    <option value = "under60">45-59 yrs.</option>
+                    <option value = "over60">60+ yrs.</option>
                 </div>
             </div>
             
-
-            
             <div class="dropdown">
-                <button class="dropbtn">Height:Feet</button>
+                <button class="dropbtn">Height</button>
                 <div class="dropdown-content">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
+                    <option>1 ft.</option>
+                    <option>2 ft.</option>
+                    <option>3 ft.</option>
+                    <option>4 ft.</option>
+                    <option>5 ft.</option>
+                    <option>6 ft.</option>
+                    <option>7 ft.</option>
+                    <option>8 ft.</option>
                 </div>
             </div>
             <div class="dropdown">
-                <button class="dropbtn">Height:Inches</button>
+                <button class="dropbtn">Height</button>
                 <div class="dropdown-content">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
+                    <option>1 in.</option>
+                    <option>2 in.</option>
+                    <option>3 in.</option>
+                    <option>4 in.</option>
+                    <option>5 in.</option>
+                    <option>6 in.</option>
+                    <option>7 in.</option>
+                    <option>8 in.</option>
+                    <option>9 in.</option>
+                    <option>10 in.</option>
+                    <option>11 in.</option>
                 </div>
             </div>
             
@@ -65,78 +64,9 @@
             <div class="dropdown">
                 <button class="dropbtn">Weight in pounds</button>
                 <div class="dropdown-content">
-                    <option>15</option>
-                    <option>20</option>
-                    <option>25</option>
-                    <option>30</option>
-                    <option>35</option>
-                    <option>40</option>
-                    <option>45</option>
-                    <option>50</option>
-                    <option>55</option>
-                    <option>60</option>
-                    <option>65</option>
-                    <option>70</option>
-                    <option>75</option>
-                    <option>80</option>
-                    <option>85</option>
-                    <option>90</option>
-                    <option>95</option>
-                    <option>100</option>
-                    <option>105</option>
-                    <option>110</option>
-                    <option>115</option>
-                    <option>120</option>
-                    <option>125</option>
-                    <option>130</option>
-                    <option>135</option>
-                    <option>145</option>
-                    <option>150</option>
-                    <option>155</option>
-                    <option>160</option>
-                    <option>165</option>
-                    <option>170</option>
-                    <option>175</option>
-                    <option>180</option>
-                    <option>185</option>
-                    <option>190</option>
-                    <option>195</option>
-                    <option>200</option>
-                    <option>205</option>
-                    <option>210</option>
-                    <option>215</option>
-                    <option>220</option>
-                    <option>225</option>
-                    <option>230</option>
-                    <option>235</option>
-                    <option>240</option>
-                    <option>245</option>
-                    <option>250</option>
-                    <option>255</option>
-                    <option>260</option>
-                    <option>265</option>
-                    <option>270</option>
-                    <option>275</option>
-                    <option>280</option>
-                    <option>285</option>
-                    <option>290</option>
-                    <option>295</option>
-                    <option>300</option>
-                    <option>305</option>
-                    <option>310</option>
-                    <option>315</option>
-                    <option>320</option>
-                    <option>325</option>
-                    <option>330</option>
-                    <option>335</option>
-                    <option>340</option>
-                    <option>345</option>
-                    <option>350</option>
-                    <option>355</option>
-                    <option>360</option>
-                    <option>365</option>
-                    <option>370</option>
-                    <option>375+</option>
+                    <form action="">
+                        <label class = "weightbox" for = "weight"></label>
+                        <input type = "text" id = "weight" placeholder = "Example: '120'" name = "weight">
                 </div>
             </div>
 
@@ -159,8 +89,16 @@
                     <option>Alzheimer's</option>
                 </div>
             </div>
+
             <br>
+            <!-- Submit button for weight input -->
+            <input class = "submitbutton" type = "submit" onclick = "bmiCalc()" value = "Submit">
             
+        </div>
+    </body><Br>
+    <body>
+        <div class = "div-body">
+        <p>Output will go here</p>
         </div>
     </body>
     
