@@ -58,7 +58,6 @@ h2 {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    transition-delay: 3s;
 }
 
 .dropdown-content option:hover {
@@ -67,8 +66,6 @@ h2 {
 
 .dropdown:hover .dropdown-content{
     display: block;
-    opacity: 1;
-    visibility: visible;
 }
 
 .dropdown:hover .dropbtn {
