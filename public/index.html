@@ -62,9 +62,9 @@
             
 
             <div class="dropdown">
-                <button class="dropbtn">Weight in pounds</button>
-                <div class="dropdown-content">
-                    <form action= "">
+                <button class="dropbtn" for="weight">Weight in pounds</button>
+                <div style = "margin-top: -1px; padding-bottom: 8px;" class="dropdown-content">
+                    <form class = "weight-form" action= "">
                         <label class = "weightbox" for = "weight"></label>
                         <input type = "text" id = "weight" placeholder = "Example: '120'" name = "weight">
                 </div>
@@ -84,6 +84,7 @@
             <div class="dropdown">
                 <label class="dropbtn" for="family-disease">Family Disease</label>
                 <select class="dropdown-content" name="family-disease" id="family-disease">
+                    <option value = "none">None</option>
                     <option value = "Diabetes">Diabetes</option>
                     <option value = "Cancer">Cancer</option>
                     <option value = "Alzheimer's">Alzheimer's</option>
