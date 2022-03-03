@@ -4,6 +4,6 @@
 // Formula: (weight * 703) / (height in inches^2)
 // rounded by one decimal place
 
-function bmiCalc() {
-    alert("TEST: output for bmi calc");
+function bmiCalc(bmi, weight, height) {
+    
 }
