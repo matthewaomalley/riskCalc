@@ -60,6 +60,7 @@ h2 {
     display: block;
     opacity: 0;
     visibility: hidden;
+    transition: 0;
     transition-delay: 3s;
 }
 
