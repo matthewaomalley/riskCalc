@@ -58,9 +58,12 @@ h2 {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+<<<<<<< HEAD
     opacity: 0;
     visibility: hidden;
     transition: 0;
+=======
+>>>>>>> 5699bf14e2dd82f540d0e2a0047441abbf4a1b7b
     transition-delay: 3s;
 }
 
