@@ -95,7 +95,17 @@
             <input class = "submitbutton" type = "submit" value = "Submit">
             
         </div>
-    </body><Br>
+
+        <script>
+            async function calculateBMI() {
+            // For where it has the numbers in the next statement, put in the variables from the dropdowns
+            const response = await fetch('/calculate-bmi?feet=5&inches=10&lbs=186')
+            const responseText = await response.text()
+            console.log(responseText)
+            document.getElementById("bmi-result").innerHTML = responseText
+        }
+        </script>
+    </body><br>
     <body>
         <div class = "div-body">
         <p>Output will go here!</p>
