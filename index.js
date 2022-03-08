@@ -4,6 +4,8 @@
 const express = require('express')
 const app = express()
 
+var url = require('url')
+
 // define directory for files to server
 app.use(express.static(__dirname + '/public'))
 
@@ -12,10 +14,13 @@ const port = process.env.PORT || 8080;
 
 // Function to calculate BMI on the server
 app.get('/calculate-bmi', (request, response) => {
+
+	// ToDo: Do input validation for weight in this function
+
 	var inputs = url.parse(request.url, true).query
 	const heightFeet = parseInt(inputs.feet)
-	const heightInches = parseInt(inputs.inches)
-	const weight = parseInt(inputs.lbs)
+	const heightInches = parseInt(inputs.inch)
+	const weight = parseInt(inputs.weight)
 
 	const weightKg = weight*.454
 	const heightM = (heightInches + (heightFeet * 12))*0.0254

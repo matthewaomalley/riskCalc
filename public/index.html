@@ -22,6 +22,7 @@
             <div class ="dropdown">
                 <label class="dropbtn" for="age">Age</label>
                 <select class="dropdown-content" name="age" id="age">
+                    <option value = "">Select</option>
                     <option value = "under30">0-29 yrs.</option>
                     <option value = "under45">30-44 yrs.</option>
                     <option value = "under60">45-59 yrs.</option>
@@ -32,6 +33,7 @@
             <div class="dropdown">
                 <label class="dropbtn" for="heightft">Height</label>
                 <select class="dropdown-content" name="height-ft" id="height-ft">
+                    <option value = "">Select</option>
                     <option value = 1>1 ft.</option>
                     <option value = 2>2 ft.</option>
                     <option value = 3>3 ft.</option>
@@ -45,6 +47,7 @@
             <div class="dropdown">
                 <label class="dropbtn" for="height-in">Height</label>
                 <select class="dropdown-content" name="height-in" id="height-in">
+                    <option value = "">Select</option>
                     <option value = 1>1 in.</option>
                     <option value = 2>2 in.</option>
                     <option value = 3>3 in.</option>
@@ -59,19 +62,19 @@
                 </select>
             </div>
             
-
             <div class="dropdown">
                 <button class="dropbtn" for="weight">Weight in pounds</button>
                 <div style = "margin-top: -1px; padding-bottom: 8px;" class="dropdown-content">
-                    <form class = "weight-form" action= "">
+                    <form name = "weightForm" class = "weight-form" action= "">
                         <label class = "weightbox" for = "weight"></label>
-                        <input type = "text" id = "weight" placeholder = "Example: '120'" name = "weight">
+                        <input type = "text" id = "weight" placeholder = "Example: '120'" name = "weightName">
                 </div>
             </div>
 
             <div class="dropdown">
                 <label class="dropbtn" for="blood-pressure">Blood Pressure</label>
                 <select class="dropdown-content" name="blood-pressure" id="blood-pressure">
+                    <option value = "">Select</option>
                     <option value = 1>Less than 120 / Less than 80</option>
                     <option value = 2>120-129 / Less than 80</option>
                     <option value = 3>130-139 / 80-89</option>
@@ -92,18 +95,27 @@
 
             <br>
             
-            <input class = "submitbutton" type = "submit" value = "Submit">
+            <input class = "submitbutton" onclick = "calculateBMI()" type = "submit" value = "Submit">
             
         </div>
 
         <script>
             async function calculateBMI() {
-            // For where it has the numbers in the next statement, put in the variables from the dropdowns
-            const response = await fetch('/calculate-bmi?feet=5&inches=10&lbs=186')
-            const responseText = await response.text()
-            console.log(responseText)
-            document.getElementById("bmi-result").innerHTML = responseText
-        }
+                // For where it has the numbers in the next statement, put in the variables from the dropdowns
+
+                // collect variables
+                const feet = document.getElementById("height-ft").value
+                const inch = document.getElementById("height-in").value
+                const weight = document.getElementById("weight").value
+
+                // create fetch string with variables and send
+                const fetchString = "/calculate-bmi?age="+age+"&feet="+feet+"&inch="+inch+"&weight="+weight
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+                console.log(responseText)
+                document.getElementById("bmi-result").innerHTML = responseText
+    
+            }
         </script>
     </body><br>
     <body>
