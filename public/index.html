@@ -95,13 +95,14 @@
 
             <br>
             
-            <input class = "submitbutton" onclick = "calculateBMI()" type = "submit" value = "Submit">
+            <input class = "submitbutton" onclick = "calcRisk()" type = "submit" value = "Submit">
             
         </div>
 
         <script>
+
+            // Function to calculate the BMI based on height in ft, in, and weight.
             async function calculateBMI() {
-                // For where it has the numbers in the next statement, put in the variables from the dropdowns
 
                 // collect variables
                 const feet = document.getElementById("height-ft").value
@@ -109,18 +110,39 @@
                 const weight = document.getElementById("weight").value
 
                 // create fetch string with variables and send
-                const fetchString = "/calculate-bmi?age="+age+"&feet="+feet+"&inch="+inch+"&weight="+weight
+                const fetchString = "/calculate-bmi?feet="+feet+"&inch="+inch+"&weight="+weight
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
                 console.log(responseText)
-                document.getElementById("bmi-result").innerHTML = responseText
-    
+                return responseText
+            }
+
+            async function calcRisk() {
+                
+                const age = document.getElementById("age").value
+                const bpressure = document.getElementById("blood-pressure").value
+                let BMI = await(calculateBMI())
+                // get radio values here
+                
+
+                // TODO:    get radio values like shown above
+                //          add radio values to the fetch string below
+
+
+                const fetchString = "/calc-risk?age="+age+"&BMI="+BMI+"&bpressure="+bpressure // add radio value(s) it here
+                const response = await fetch(fetchString)
+                const responseText = await response.text()
+                console.log(responseText)
+
+                // set output textfield to the result
+                document.getElementById("final-result").value = responseText
+                
             }
         </script>
     </body><br>
     <body>
         <div class = "div-body">
-        <p>Output will go here!</p>
+        <input type = "text" name = "output" id = "final-result" required readonly>
         </div>
     </body>
     

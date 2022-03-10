@@ -22,13 +22,40 @@ app.get('/calculate-bmi', (request, response) => {
 	const heightInches = parseInt(inputs.inch)
 	const weight = parseInt(inputs.weight)
 
-	const weightKg = weight*.454
-	const heightM = (heightInches + (heightFeet * 12))*0.0254
-	const BMI = weightKg/(heightM*heightM)
-
+	const weightKg = weight * .454
+	const heightM = (heightInches + (heightFeet * 12)) * 0.0254
+	let BMI = weightKg / (heightM * heightM)
+	BMI = parseInt(BMI)
+	
 	response.type('text/plain')
 	response.send(BMI.toString())
+	
 })
+
+// This function takes in all data and calculates the risk
+app.get('/calc-risk', (request, response) => {
+
+	//TODO: risk calculation with all data, return total points and riskFactor	
+	var inputs = url.parse(request.url, true).query
+	const age = parseInt(inputs.age)
+	const bpress = parseInt(inputs.bpressure)
+	const disease = parseInt(inputs.disease) // 
+	// parse int might not work for the string values, worry about later
+
+	// calculations done here
+
+	//let riskFactor = (total points, risk category)
+	//response.type('text/plain')
+	//response.send(riskFactor.toString())
+})
+
+// custom 500 page
+app.use((err, request, response, next) => {
+	console.error(err.message)
+	response.type('text/plain')
+	response.status(500)
+	response.send('500 - Server Error')
+  })
 
 // listen on the port
 app.listen(port, () => console.log(
