@@ -48,7 +48,47 @@ app.get('/calc-risk', (request, response) => {
 	const bmi = parseInt(inputs.bmi)
 	const bpress = (inputs.bpressure)
 	const disease = parseInt(inputs.disease)
+	var riskTotal = 0
 
+	// Risk calculations for age
+	if (age == "under45") {
+		riskTotal += 10
+	}
+	else if (age == "under60") {
+		riskTotal += 20
+	}
+	else if (age == "over60") {
+		riskTotal += 30
+	}
+
+	// Risk calculations for BMI
+	if (bmi < 18.5) {
+		riskTotal += 75
+	}
+	else if (bmi < 25) {
+		riskTotal += 0
+	}
+	else if (bmi < 30) {
+		riskTotal += 30
+	}
+	else {
+		riskTotal += 75
+	}
+
+	// Risk calculations for blood pressure
+	if (bpress == "elevated") {
+		riskTotal += 15
+	}
+	else if (bpress == "stage1") {
+		riskTotal += 30
+	}
+	else if (bpress == "stage2") {
+		riskTotal += 75
+	}
+	else if (bpress == "crisis") {
+		riskTotal += 100
+	}
+	
 
 	// calculations done here (they might have to be moved below input validation and before the last else
 	//statement, not sure.)
@@ -64,7 +104,19 @@ app.get('/calc-risk', (request, response) => {
 		break breakit }
 	else {
 		response.type('text/plain')
-		response.send("Result") } // This will be the actual result variable and not a string
+		if (riskTotal <=20 ) {
+			response.send("You are at a low risk")
+		}
+		else if (riskTotal <= 50) {
+			response.send("You are at a moderate risk")
+		}
+		else if (riskTotal <= 75) {
+			response.send("You are at high risk")
+		}
+		else {
+			response.send("You are uninsurable.")
+		}
+		response.send("") }
 
 })
 
