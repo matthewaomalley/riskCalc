@@ -85,18 +85,22 @@
         
             <div class="dropdown">
                 <label class="dropbtn" for="family-disease">Family Disease</label>
-                    <div class="selectBox" onclick="showCheckboxes()">
-                        <select>
-                            <option>Select all that apply</option>
-                        </select>
-                        <div class="overSelect"></div>
+                    <div class="dropdown-content" name="family-disease" id="family-disease">
+                        <div class="selectBox" onclick="showCheckboxes()">
+                            <select>
+                                <option>Select all that apply</option>
+                            </select>
+                            <div class="overSelect"></div>
+                            
+                            <div id="checkboxes">
+                                <label for="none"><input type="checkbox" id="none"/>None</label>
+                                <label for="diabetes"><input type="checkbox" id="diabetes"/>Diabetes</label>
+                                <label for="cancer"><input type="checkbox" id="cancer"/>Cancer</label>
+                                <label for="alzheimer"><input type="checkbox" id="alzheimer"/>Alzheimer</label>
+                            </div>
+                        </div>
                     </div>
-                    <div id="checkboxes">
-                        <label for="none"><input type="checkbox" id="none"/>None</label>
-                        <label for="diabetes"><input type="checkbox" id="diabetes"/>Diabetes</label>
-                        <label for="cancer"><input type="checkbox" id="cancer"/>Cancer</label>
-                        <label for="alzheimer"><input type="checkbox" id="alzheimer"/>Alzheimer</label>
-                    </div>
+
             </div>
             <script>
                 var expanded = false;
