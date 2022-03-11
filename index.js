@@ -117,10 +117,13 @@ app.get('/calc-risk', (request, response) => {
 		else if (riskTotal <= 75) {
 			response.send("Total Score: " + riskTotal + "	You are at high risk")
 		}
-		else {
+		else if (riskTotal > 75) {
 			response.send("Total Score: " + riskTotal + "	You are uninsurable")
 		}
-		response.send("") }
+		else {
+			response.send("") }
+		}
+		
 
 })
 
