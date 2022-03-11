@@ -17,7 +17,7 @@ app.get('/calculate-bmi', (request, response) => {
 
 
 	var inputs = url.parse(request.url, true).query
-	const heightFeet = parseInt(inputs.feet)
+	const heightFeet = (inputs.feet)
 	const heightInches = parseInt(inputs.inch)
 	const weight = parseInt(inputs.weight)
 
@@ -41,17 +41,31 @@ app.get('/calc-risk', (request, response) => {
 
 	//TODO: risk calculation with all data, return total points and riskFactor	
 	var inputs = url.parse(request.url, true).query
-	const age = parseInt(inputs.age)
+	const heightFeet = (inputs.feet)
+	const heightInches = (inputs.inch)
+	const age = (inputs.age)
+	const weight = (inputs.weight)
 	const bmi = parseInt(inputs.bmi)
-	const bpress = parseInt(inputs.bpressure)
+	const bpress = (inputs.bpressure)
 	const disease = parseInt(inputs.disease)
-	// parse int might not work for the string values, worry about later
 
-	// calculations done here
 
+	// calculations done here (they might have to be moved below input validation and before the last else
+	//statement, not sure.)
 	//let riskFactor = (total points, risk category)
-	//response.type('text/plain')
-	//response.send(riskFactor.toString())
+
+	
+	// Input validation || break it if the weight is not correct
+	breakit: if ((age == "select") || (heightFeet == "select") || (heightInches == "select") || (weight == "") || bpress == ("select")) {
+		response.type('text/plain')
+		response.send("Error: One or more fields are uncompleted") }
+	else if (weight > 500 || weight < 1) {
+		response.send("")
+		break breakit }
+	else {
+		response.type('text/plain')
+		response.send("Result") } // This will be the actual result variable and not a string
+
 })
 
 // custom 500 page

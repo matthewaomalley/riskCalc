@@ -22,7 +22,7 @@
             <div class ="dropdown">
                 <label class="dropbtn" for="age">Age</label>
                 <select class="dropdown-content" name="age" id="age">
-                    <option value = "">Select</option>
+                    <option value = "select">Select</option>
                     <option value = "under30">0-29 yrs.</option>
                     <option value = "under45">30-44 yrs.</option>
                     <option value = "under60">45-59 yrs.</option>
@@ -33,32 +33,32 @@
             <div class="dropdown">
                 <label class="dropbtn" for="heightft">Height (ft)</label>
                 <select class="dropdown-content" name="height-ft" id="height-ft">
-                    <option value = "">Select</option>
-                    <option value = 1>1 ft.</option>
-                    <option value = 2>2 ft.</option>
-                    <option value = 3>3 ft.</option>
-                    <option value = 4>4 ft.</option>
-                    <option value = 5>5 ft.</option>
-                    <option value = 6>6 ft.</option>
-                    <option value = 7>7 ft.</option>
-                    <option value = 8>8 ft.</option>
+                    <option value = "select">Select</option>
+                    <option value = "1">1 ft.</option>
+                    <option value = "2">2 ft.</option>
+                    <option value = "3">3 ft.</option>
+                    <option value = "4">4 ft.</option>
+                    <option value = "5">5 ft.</option>
+                    <option value = "6">6 ft.</option>
+                    <option value = "7">7 ft.</option>
+                    <option value = "8">8 ft.</option>
                 </select>
             </div>
             <div class="dropdown">
                 <label class="dropbtn" for="height-in">Height (in)</label>
                 <select class="dropdown-content" name="height-in" id="height-in">
-                    <option value = "">Select</option>
-                    <option value = 1>1 in.</option>
-                    <option value = 2>2 in.</option>
-                    <option value = 3>3 in.</option>
-                    <option value = 4>4 in.</option>
-                    <option value = 5>5 in.</option>
-                    <option value = 6>6 in.</option>
-                    <option value = 7>7 in.</option>
-                    <option value = 8>8 in.</option>
-                    <option value = 9>9 in.</option>
-                    <option value = 10>10 in.</option>
-                    <option value = 11>11 in.</option>
+                    <option value = "select">Select</option>
+                    <option value = "1">1 in.</option>
+                    <option value = "2">2 in.</option>
+                    <option value = "3">3 in.</option>
+                    <option value = "4">4 in.</option>
+                    <option value = "5">5 in.</option>
+                    <option value = "6">6 in.</option>
+                    <option value = "7">7 in.</option>
+                    <option value = "8">8 in.</option>
+                    <option value = "9">9 in.</option>
+                    <option value = "10">10 in.</option>
+                    <option value = "11">11 in.</option>
                 </select>
             </div>
             
@@ -74,12 +74,12 @@
             <div class="dropdown">
                 <label class="dropbtn" for="blood-pressure">Blood Pressure</label>
                 <select class="dropdown-content" name="blood-pressure" id="blood-pressure">
-                    <option value = "">Select</option>
-                    <option value = 1>Less than 120 / Less than 80</option>
-                    <option value = 2>120-129 / Less than 80</option>
-                    <option value = 3>130-139 / 80-89</option>
-                    <option value = 4>140+ / 90+</option>
-                    <option value = 5>180+ / 120+</option>
+                    <option value = "select">Select</option>
+                    <option value = "1">Less than 120 / Less than 80</option>
+                    <option value = "2">120-129 / Less than 80</option>
+                    <option value = "3">130-139 / 80-89</option>
+                    <option value = "4">140+ / 90+</option>
+                    <option value = "5">180+ / 120+</option>
                 </select>
             </div>
 
@@ -96,7 +96,6 @@
             <input class = "submitbutton" onclick = "calcRisk()" type = "submit" value = "Submit">
             
         </div>
-
         <script>
 
             // Function to calculate the BMI based on height in ft, in, and weight.
@@ -114,27 +113,33 @@
                 console.log(responseText)
         
                 // weight input validation
-                if (isNaN(responseText) == false) {
-                    return responseText
+                if (responseText.includes("Error:")) {
+                    alert(responseText)
                 } else {
-                    alert(responseText) }
+                    return responseText }
             }
 
             async function calcRisk() {
-                
+
                 const age = document.getElementById("age").value
+                const feet = document.getElementById("height-ft").value
+                const inch = document.getElementById("height-in").value
+                const weight = document.getElementById("weight").value
                 const bpressure = document.getElementById("blood-pressure").value
                 let BMI = await(calculateBMI())
                 let disCount = check()
                 
-                const fetchString = "/calc-risk?age="+age+"&bmi="+BMI+"&bpressure="+bpressure+"&disease="+disCount
-                
+                const fetchString = "/calc-risk?feet="+feet+"&inch="+inch+"&age="+age+"&weight="+weight+"&bmi="+BMI+"&bpressure="+bpressure+"&disease="+disCount
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
                 console.log(responseText)
-                
-                // set output textfield to the result
-                document.getElementById("final-result").value = responseText
+
+                if (responseText.includes("Error:")) {
+                    alert(responseText)
+                } else {
+                    // set output textfield to the result
+                    document.getElementById("final-result").value = responseText
+                }
             }
 
             // Simple function to get number of diseases checked
@@ -158,5 +163,4 @@
         <input type = "text" name = "output" id = "final-result" required readonly>
         </div>
     </body>
-    
     </html>
