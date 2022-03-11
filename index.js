@@ -15,20 +15,25 @@ const port = process.env.PORT || 8080;
 // Function to calculate BMI on the server
 app.get('/calculate-bmi', (request, response) => {
 
-	// TODO: Do input validation for weight in this function
 
 	var inputs = url.parse(request.url, true).query
 	const heightFeet = parseInt(inputs.feet)
 	const heightInches = parseInt(inputs.inch)
 	const weight = parseInt(inputs.weight)
 
-	const weightKg = weight * .454
-	const heightM = (heightInches + (heightFeet * 12)) * 0.0254
-	let BMI = weightKg / (heightM * heightM)
-	BMI = parseInt(BMI)
-	
-	response.type('text/plain')
-	response.send(BMI.toString())
+	if (weight > 500 || weight < 1) {
+		response.type('text/plain')
+		response.send("Error: Please enter a valid weight between 1 and 500")
+	}
+	else {
+		const weightKg = weight * .454
+		const heightM = (heightInches + (heightFeet * 12)) * 0.0254
+		let BMI = weightKg / (heightM * heightM)
+		BMI = parseInt(BMI)
+		
+		response.type('text/plain')
+		response.send(BMI.toString())
+	}
 })
 
 // This function takes in all data and calculates the risk

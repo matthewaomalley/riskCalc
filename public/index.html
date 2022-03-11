@@ -112,7 +112,12 @@
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
                 console.log(responseText)
-                return responseText
+        
+                // weight input validation
+                if (isNaN(responseText) == false) {
+                    return responseText
+                } else {
+                    alert(responseText) }
             }
 
             async function calcRisk() {
