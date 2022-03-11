@@ -84,14 +84,34 @@
             </div>
         
             <div class="dropdown">
-                <label class="dropbtn" for="family-disease">Family Disease (Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.)</label>
-                <select style = "max-width: 5px" class="dropdown-content" name="family-disease" id="family-disease" multiple="multiple">
-                    <option value = "None">None</option>
-                    <option value = "Diabetes">Diabetes</option>
-                    <option value = "Cancer">Cancer</option>
-                    <option value = "Alzheimer's">Alzheimer's</option>
-                </select>
+                <label class="dropbtn" for="family-disease">Family Disease</label>
+                <div class="selectBox" onclick="showCheckboxes()">
+                    <select>
+                        <option>Select all that apply</option>
+                    </select>
+                    <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes">
+                    <label for="none"><input type="checkbox" id="none"/>None</label>
+                    <label for="diabetes"><input type="checkbox" id="diabetes"/>Diabetes</label>
+                    <label for="cancer"><input type="checkbox" id="cancer"/>Cancer</label>
+                    <label for="alzheimer"><input type="checkbox" id="alzheimer"/>Alzheimer</label>
+                </div>
             </div>
+            <script>
+                var expanded = false;
+                function showCheckboxes() {
+                    var checkboxes = document.getElementById("checkboxes");
+                    if (!expanded) {
+                        checkboxes.style.display = "block";
+                        expanded = true;
+                    }
+                    else {
+                        checkboxes.style.display = "none";
+                        expanded = false;
+                    }
+                }
+            </script> 
 
             <br>
             
