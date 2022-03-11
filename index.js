@@ -15,7 +15,6 @@ const port = process.env.PORT || 8080;
 // Function to calculate BMI on the server
 app.get('/calculate-bmi', (request, response) => {
 
-
 	var inputs = url.parse(request.url, true).query
 	const heightFeet = (inputs.feet)
 	const heightInches = parseInt(inputs.inch)
@@ -88,15 +87,20 @@ app.get('/calc-risk', (request, response) => {
 	else if (bpress == "crisis") {
 		riskTotal += 100
 	}
-	
 
-	// calculations done here (they might have to be moved below input validation and before the last else
-	//statement, not sure.)
-	//let riskFactor = (total points, risk category)
-
+	// Risk calculations for family disease history
+	if (disease == 1) {
+		riskTotal += 10
+	}
+	if (disease == 2) {
+		riskTotal += 20
+	}
+	if (disease == 3) {
+		riskTotal += 30
+	}
 	
 	// Input validation || break it if the weight is not correct
-	breakit: if ((age == "select") || (heightFeet == "select") || (heightInches == "select") || (weight == "") || bpress == ("select")) {
+	breakit: if ((age == "select") || (heightFeet == "select") || (weight == "") || bpress == ("select")) {
 		response.type('text/plain')
 		response.send("Error: One or more fields are uncompleted") }
 	else if (weight > 500 || weight < 1) {
@@ -105,16 +109,16 @@ app.get('/calc-risk', (request, response) => {
 	else {
 		response.type('text/plain')
 		if (riskTotal <=20 ) {
-			response.send("You are at a low risk")
+			response.send("Total Score: " + riskTotal + "	You are at a low risk")
 		}
 		else if (riskTotal <= 50) {
-			response.send("You are at a moderate risk")
+			response.send("Total Score: " + riskTotal + "	You are at a moderate risk")
 		}
 		else if (riskTotal <= 75) {
-			response.send("You are at high risk")
+			response.send("Total Score: " + riskTotal + "	You are at high risk")
 		}
 		else {
-			response.send("You are uninsurable.")
+			response.send("Total Score: " + riskTotal + "	You are uninsurable")
 		}
 		response.send("") }
 
@@ -126,7 +130,7 @@ app.use((err, request, response, next) => {
 	response.type('text/plain')
 	response.status(500)
 	response.send('500 - Server Error')
-  })
+})
 
 // listen on the port
 app.listen(port, () => console.log(
