@@ -100,7 +100,7 @@ app.get('/calc-risk', (request, response) => {
 	}
 	
 	// Input validation || break it if the weight is not correct
-	breakit: if ((age == "select") || (heightFeet == "select") || (weight == "") || bpress == ("select")) {
+	breakit: if ((age == "select") || (heightFeet == "select") || (heightInches == "select") || (weight == "") || bpress == ("select")) {
 		response.type('text/plain')
 		response.send("Error: One or more fields are uncompleted") }
 	else if (weight > 500 || weight < 1) {
@@ -108,7 +108,7 @@ app.get('/calc-risk', (request, response) => {
 		break breakit }
 	else {
 		response.type('text/plain')
-		if (riskTotal <=20 ) {
+		if (riskTotal <= 20 ) {
 			response.send("Total Score: " + riskTotal + "	You are at a low risk")
 		}
 		else if (riskTotal <= 50) {
@@ -123,8 +123,6 @@ app.get('/calc-risk', (request, response) => {
 		else {
 			response.send("") }
 		}
-		
-
 })
 
 // custom 500 page
