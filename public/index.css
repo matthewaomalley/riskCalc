@@ -72,6 +72,27 @@ h2 {
     background-color: rgb(202, 165, 165);
 }
 
+.famDisBoxLabel {
+    color: black;
+    padding: 8px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    font-family: georgia;
+    display: inline-block;
+}
+
+.famDisBoxColor {
+    background-color: rgb(255, 231, 231);
+    padding: 5px;
+    margin: 5px;
+}
+
+.diseaseline {
+    display: inline-block;
+    padding: 5px;
+}
+
 .weightbox {
     position: absolute;
     padding: 5px;
@@ -85,14 +106,6 @@ h2 {
     border-radius: 5px;
 }
 
-.disease-radio {
-    display: inline-block;
-    border: 10px black;
-}
-
-.radio-label {
-    float: left;
-}
 
 input[name=output] {
     background-color: transparent;

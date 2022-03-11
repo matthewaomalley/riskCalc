@@ -31,7 +31,7 @@
             </div>
             
             <div class="dropdown">
-                <label class="dropbtn" for="heightft">Height</label>
+                <label class="dropbtn" for="heightft">Height (ft)</label>
                 <select class="dropdown-content" name="height-ft" id="height-ft">
                     <option value = "">Select</option>
                     <option value = 1>1 ft.</option>
@@ -45,7 +45,7 @@
                 </select>
             </div>
             <div class="dropdown">
-                <label class="dropbtn" for="height-in">Height</label>
+                <label class="dropbtn" for="height-in">Height (in)</label>
                 <select class="dropdown-content" name="height-in" id="height-in">
                     <option value = "">Select</option>
                     <option value = 1>1 in.</option>
@@ -82,42 +82,16 @@
                     <option value = 5>180+ / 120+</option>
                 </select>
             </div>
-        
-            <div class="dropdown">
-                <label class="dropbtn" for="family-disease">Family Disease</label>
-                    <div class="dropdown-content" name="family-disease" id="family-disease">
-                        <div class="selectBox" onclick="showCheckboxes()">
-                            <select>
-                                <option>Select all that apply</option>
-                            </select>
-                            <div class="overSelect"></div>
-                            
-                            <div id="checkboxes">
-                                <label for="none"><input type="checkbox" id="none"/>None</label>
-                                <label for="diabetes"><input type="checkbox" id="diabetes"/>Diabetes</label>
-                                <label for="cancer"><input type="checkbox" id="cancer"/>Cancer</label>
-                                <label for="alzheimer"><input type="checkbox" id="alzheimer"/>Alzheimer</label>
-                            </div>
-                        </div>
-                    </div>
-
-            </div>
-            <script>
-                var expanded = false;
-                function showCheckboxes() {
-                    var checkboxes = document.getElementById("checkboxes");
-                    if (!expanded) {
-                        checkboxes.style.display = "block";
-                        expanded = true;
-                    }
-                    else {
-                        checkboxes.style.display = "none";
-                        expanded = false;
-                    }
-                }
-            </script> 
 
             <br>
+            <div class = "diseaseline">
+                <p class = "famDisBoxLabel"><span class = "famDisBoxColor">Family Disease?</span><br></p>
+                <form>
+                    <label><input required id = "dia" value = "yesDia" type = "checkbox">Diabetes</label>
+                    <label><input id = "can" value = "yesCan" type = "checkbox">Cancer</label>
+                    <label><input id = "alz" value = "yesAlz" type = "checkbox">Alzheimer's</label>
+                </form>
+            </div><br>
             
             <input class = "submitbutton" onclick = "calcRisk()" type = "submit" value = "Submit">
             
@@ -146,21 +120,31 @@
                 const age = document.getElementById("age").value
                 const bpressure = document.getElementById("blood-pressure").value
                 let BMI = await(calculateBMI())
-                // get radio values here
+                let disCount = check()
                 
-
-                // TODO:    get radio values like shown above
-                //          add radio values to the fetch string below
-
-
-                const fetchString = "/calc-risk?age="+age+"&BMI="+BMI+"&bpressure="+bpressure // add radio value(s) it here
+                const fetchString = "/calc-risk?age="+age+"&bmi="+BMI+"&bpressure="+bpressure+"&disease="+disCount
+                
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
                 console.log(responseText)
-
+                
                 // set output textfield to the result
                 document.getElementById("final-result").value = responseText
-                
+            }
+
+            // Simple function to get number of diseases checked
+            function check() {
+                let counter = 0;
+                if (document.getElementById("dia").checked == true) {
+                    counter++;
+                }
+                if (document.getElementById("can").checked == true) {
+                    counter++;
+                }
+                if (document.getElementById("alz").checked == true) {
+                    counter++;
+                }
+                return counter;
             }
         </script>
     </body><br>

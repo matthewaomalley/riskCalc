@@ -15,7 +15,7 @@ const port = process.env.PORT || 8080;
 // Function to calculate BMI on the server
 app.get('/calculate-bmi', (request, response) => {
 
-	// ToDo: Do input validation for weight in this function
+	// TODO: Do input validation for weight in this function
 
 	var inputs = url.parse(request.url, true).query
 	const heightFeet = parseInt(inputs.feet)
@@ -29,7 +29,6 @@ app.get('/calculate-bmi', (request, response) => {
 	
 	response.type('text/plain')
 	response.send(BMI.toString())
-	
 })
 
 // This function takes in all data and calculates the risk
@@ -38,8 +37,9 @@ app.get('/calc-risk', (request, response) => {
 	//TODO: risk calculation with all data, return total points and riskFactor	
 	var inputs = url.parse(request.url, true).query
 	const age = parseInt(inputs.age)
+	const bmi = parseInt(inputs.bmi)
 	const bpress = parseInt(inputs.bpressure)
-	const disease = parseInt(inputs.disease) // 
+	const disease = parseInt(inputs.disease)
 	// parse int might not work for the string values, worry about later
 
 	// calculations done here
