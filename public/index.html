@@ -88,9 +88,9 @@
             <div class = "diseaseline">
                 <p class = "famDisBoxLabel"><span class = "famDisBoxColor">Family Disease?</span><br></p>
                 <form>
-                    <label><input required id = "dia" value = "yesDia" type = "checkbox">Diabetes</label>
-                    <label><input id = "can" value = "yesCan" type = "checkbox">Cancer</label>
-                    <label><input id = "alz" value = "yesAlz" type = "checkbox">Alzheimer's</label>
+                    <label><input required id = "dia" value = "Diabetes" type = "checkbox">Diabetes</label>
+                    <label><input id = "can" value = "Cancer" type = "checkbox">Cancer</label>
+                    <label><input id = "alz" value = "Alzheimer's" type = "checkbox">Alzheimer's</label>
                 </form>
             </div><br>
             
@@ -98,6 +98,8 @@
             
         </div>
         <script>
+
+            diseases = []
 
             // Function to calculate the BMI based on height in ft, in, and weight.
             async function calculateBMI() {
@@ -130,30 +132,40 @@
                 let BMI = await(calculateBMI())
                 let disCount = check()
                 
+                
                 const fetchString = "/calc-risk?feet="+feet+"&inch="+inch+"&age="+age+"&weight="+weight+"&bmi="+BMI+"&bpressure="+bpressure+"&disease="+disCount
                 const response = await fetch(fetchString)
                 const responseText = await response.text()
                 console.log(responseText)
-
+                
+                let theSum = ("Age: " + age + ",   BMI: " + BMI + ",   Blood Pressure: " + bpressure)
+    
                 if (responseText.includes("Error:")) {
                     alert(responseText)
                 } else {
                     // set output textfield to the result
                     document.getElementById("final-result").value = responseText
+                    document.getElementById("summary").value = theSum
+                    document.getElementById("fdoutput").value = diseases
                 }
+                diseases = []
             }
 
             // Simple function to get number of diseases checked
             function check() {
+                diseases += "Family Diseases:   "
                 let counter = 0;
                 if (document.getElementById("dia").checked == true) {
                     counter++;
+                    diseases += "Diabetes   "
                 }
                 if (document.getElementById("can").checked == true) {
                     counter++;
+                    diseases += "Cancer   "
                 }
                 if (document.getElementById("alz").checked == true) {
                     counter++;
+                    diseases += "Alzheimer's   "
                 }
                 return counter;
             }
@@ -161,7 +173,9 @@
     </body><br>
     <body>
         <div class = "div-body">
-        <input style = "font-weight: bold" size = 50 type = "text" name = "output" id = "final-result" required readonly>
+        <input style = "font-weight: bold" size = 50 type = "text" name = "output" id = "final-result" required readonly><br>
+        <input style = "font-weight: bold" size = 80 type = "text" name = "output" id = "summary" required readonly><br>
+        <input style = "font-weight: bold" size = 80 type = "text" name = "output" id = "fdoutput" required readonly>
         </div>
     </body>
     </html>
